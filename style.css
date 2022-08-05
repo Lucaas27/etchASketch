@@ -1,19 +1,27 @@
 :root {
   --grid-row: 1;
   --grid-col: 1;
-  --primary-light: #fefefe;
+  --primary-light: #efefef;
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 5rem;
   align-items: center;
-}
-main {
-  flex: 1;
+  gap: 3rem;
   background-color: var(--primary-light);
+}
+
+main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  flex: 1;
+}
+
+.title {
+  font-size: clamp(1.5rem, 0.9286rem + 2.8571vw, 3.5rem);
 }
 
 .container {
@@ -22,8 +30,57 @@ main {
   height: 300px;
   grid-template-columns: repeat(var(--grid-col), 1fr);
   grid-template-rows: repeat(var(--grid-row), 1fr);
+  background-color: white;
 }
 
 .grid-item {
   border: 1px solid black;
+}
+
+/*
+
+Breakpoints
+
+- phones under 688px
+43em (688px) 
+- tablets between 43em (688px) and 62em (992px)
+62em (992px) 
+- smaller screens between 62em (992px) to 75em (1200px)
+75em (1200px) 
+desktop screens will be between than 75em (1200px) and 88em(1400px)
+88em(1400px)
+medium desktop will be greater than 88em(1400px)
+
+*/
+
+/* for-tablet-portrait-up */
+@media (min-width: 43em) {
+  .container {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* for-smaller-screens-up */
+@media (min-width: 62em) {
+  .container {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* for-desktop-up */
+@media (min-width: 75em) {
+  .container {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+/* for-medium-desktop-up */
+@media (min-width: 88em) {
+  .container {
+    width: 650px;
+    height: 650px;
+  }
 }
