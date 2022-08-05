@@ -1,0 +1,29 @@
+:root {
+  --grid-row: 1;
+  --grid-col: 1;
+  --primary-light: #fefefe;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 5rem;
+  align-items: center;
+}
+main {
+  flex: 1;
+  background-color: var(--primary-light);
+}
+
+.container {
+  display: grid;
+  width: 300px;
+  height: 300px;
+  grid-template-columns: repeat(var(--grid-col), 1fr);
+  grid-template-rows: repeat(var(--grid-row), 1fr);
+}
+
+.grid-item {
+  border: 1px solid black;
+}
