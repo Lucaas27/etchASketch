@@ -18,6 +18,14 @@ function makeGrid(row = 16, col = 16) {
   }
 }
 
+function changeColor() {
+  container.addEventListener("mouseover", (e) => {
+    e.target.style.backgroundColor = "#000";
+    console.log(e.target);
+  });
+}
+
 window.onload = () => {
   makeGrid();
+  changeColor();
 };
