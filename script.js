@@ -1,5 +1,7 @@
 const container = document.querySelector(".container");
+const cells = document.querySelectorAll(".grid-item");
 const root = document.documentElement;
+let pickedBgColor = '#000'
 
 /* 
 Replace the grid-row/grid-col properties from root
@@ -9,23 +11,52 @@ it will default to 16x16
 function makeGrid(row = 16, col = 16) {
   root.style.setProperty("--grid-row", row);
   root.style.setProperty("--grid-col", col);
+  container.setAttribute('draggable', false);
   // iterate over the area of the container and creates cells to append to it
   for (let i = 0; i < row * col; i++) {
     const cell = document.createElement("div");
     cell.classList.add("grid-item");
-    // cell.textContent = cell + 1;
     container.append(cell);
   }
 }
 
-function changeColor() {
-  container.addEventListener("mouseover", (e) => {
-    e.target.style.backgroundColor = "#000";
-    console.log(e.target);
-  });
+function paint() {
+  //Listens for two events and calls appropriate function
+  ['mousedown', 'mouseup'].forEach(evt => {
+    //Assign a function to callback, depending on the event.
+    let callback;
+    switch (evt) {
+      case 'mousedown':
+        callback = mouseDownListener;
+        break;
+      case 'mouseup':
+        callback = mouseUpListener;
+        break;
+    }
+    container.addEventListener(evt, callback);
+  })
 }
+
+// Change the background color
+function changeColor(e) {
+  e.target.style.backgroundColor = pickedBgColor;
+}
+
+/*Once the mouse down event listener is triggered, this function
+will trigger another event listener - mousemove.*/
+function mouseDownListener(e) {
+  changeColor(e);
+  // console.log(e.target);
+  container.addEventListener('mousemove', changeColor);
+}
+
+// Remove mousemove listener 
+function mouseUpListener() {
+  container.removeEventListener('mousemove', changeColor);
+}
+
 
 window.onload = () => {
   makeGrid();
-  changeColor();
+  paint();
 };
