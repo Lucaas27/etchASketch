@@ -1,7 +1,9 @@
 const container = document.querySelector(".container");
 const cells = document.querySelectorAll(".grid-item");
 const root = document.documentElement;
-let pickedBgColor = '#000'
+const slider = document.getElementById("myRange");
+const gridSize = document.getElementById("grid__value");
+let pickedBgColor = 'rgb(0,0,0)'
 
 /* 
 Replace the grid-row/grid-col properties from root
@@ -56,7 +58,16 @@ function mouseUpListener() {
 }
 
 
+function changeGrid() {
+  gridSize.textContent = `${slider.value}x${slider.value}`;
+
+  slider.oninput = function () {
+    gridSize.textContent = `${this.value}x${this.value}`;
+  }
+}
 window.onload = () => {
   makeGrid();
   paint();
+  changeGrid();
 };
+

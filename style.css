@@ -1,7 +1,8 @@
 :root {
 	--grid-row: 1;
 	--grid-col: 1;
-	--primary-light: #efefef;
+	--primary-color: #efefef;
+	--secondary-color: #04aa6d;
 }
 
 body {
@@ -9,8 +10,8 @@ body {
 	flex-direction: column;
 	justify-content: start;
 	align-items: center;
-	gap: 3rem;
-	background-color: var(--primary-light);
+	gap: 2rem;
+	background-color: var(--primary-color);
 }
 
 main {
@@ -19,24 +20,56 @@ main {
 	justify-content: flex-start;
 	align-items: start;
 	flex: 1;
-	gap: 3rem;
+	gap: 2rem;
 }
 
-.slidecontainer {
+.settings {
 	display: flex;
+	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: start;
 	width: 100%;
 }
 
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 10px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: clamp(0.7rem, 0.4714285714285714rem + 1.1428571428571428vw, 1.5rem);
+	height: clamp(0.7rem, 0.4714285714285714rem + 1.1428571428571428vw, 1.5rem);
+	border-radius: 50%;
+	background: var(--secondary-color);
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	width: clamp(0.7rem, 0.4714285714285714rem + 1.1428571428571428vw, 1.5rem);
+	height: clamp(0.7rem, 0.4714285714285714rem + 1.1428571428571428vw, 1.5rem);
+	border-radius: 50%;
+	background: var(--secondary-color);
+	cursor: pointer;
+}
+
 .title {
-	font-size: clamp(1.5rem, 0.9286rem + 2.8571vw, 3.5rem);
+	font-size: clamp(1.7rem, 1.0428571428571427rem + 3.2857142857142856vw, 4rem);
+	color: var(--secondary-color);
 }
 
 .container {
 	display: grid;
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 	grid-template-columns: repeat(var(--grid-col), 1fr);
 	grid-template-rows: repeat(var(--grid-row), 1fr);
 	background-color: white;
@@ -65,17 +98,17 @@ medium desktop will be greater than 88em(1400px)
 /* for-tablet-portrait-up */
 @media (min-width: 43em) {
 	.container {
-		width: 350px;
-		height: 350px;
+		width: 300px;
+		height: 300px;
 	}
 }
 
 /* for-smaller-screens-up */
 @media (min-width: 62em) {
-	.container {
-		width: 400px;
-		height: 400px;
-	}
+	/* .container {
+		width: 350px;
+		height: 350px;
+	} */
 }
 
 /* for-desktop-up */
@@ -89,7 +122,7 @@ medium desktop will be greater than 88em(1400px)
 /* for-medium-desktop-up */
 @media (min-width: 88em) {
 	.container {
-		width: 650px;
-		height: 650px;
+		width: 600px;
+		height: 600px;
 	}
 }
