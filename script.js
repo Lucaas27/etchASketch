@@ -1,4 +1,5 @@
 const container = document.querySelector(".container");
+// const gridItems = document.querySelectorAll(".grid-item");
 const root = document.documentElement;
 const slider = document.getElementById("myRange");
 const gridSize = document.getElementById("slider__value");
@@ -9,17 +10,20 @@ Replace the grid-row/grid-col properties from root
 for the ones passed into the function.If no value is passed
 it will default to 16x16
 */
-function makeGrid(row = 16, col = 16) {
-  root.style.setProperty("--grid-row", row);
-  root.style.setProperty("--grid-col", col);
+function makeGrid(size = 16) {
+  root.style.setProperty("--grid-row", size);
+  root.style.setProperty("--grid-col", size);
   container.setAttribute("draggable", false);
   // iterate over the area of the container and creates cells to append to it
-  for (let i = 0; i < row * col; i++) {
+  for (let i = 0; i < size * size; i++) {
     const cell = document.createElement("div");
     cell.classList.add("grid-item");
     container.append(cell);
   }
 }
+
+
+
 
 function paint() {
   //Listens for two events and calls appropriate function
@@ -42,17 +46,17 @@ function paint() {
   });
 }
 
-// Change the background color
-function changeColor(e) {
-  e.target.style.backgroundColor = pickedBgColor;
-}
 
 /*Once the mouse down event listener is triggered, this function
 will trigger another event listener - mousemove.*/
 function mouseDownListener(e) {
   changeColor(e);
-  // console.log(e.target);
   container.addEventListener("mousemove", changeColor);
+}
+
+// Change the background color
+function changeColor(e) {
+  e.target.style.backgroundColor = pickedBgColor;
 }
 
 // Remove mousemove listener
@@ -62,13 +66,27 @@ function mouseUpListener() {
 
 function changeGrid() {
   gridSize.textContent = `${slider.value}x${slider.value}`;
-
-  slider.oninput = () => {
-    gridSize.textContent = `${this.value}x${this.value}`;
+  slider.oninput = (e) => {
+    gridSize.textContent = `${e.target.value}x${e.target.value}`;
+    clearGrid()
+    makeGrid(e.target.value);
   };
 }
-window.onload = () => {
+
+function clearGrid() {
+  container.innerHTML = '';
+}
+
+function reloadGrid() {
+  clearGrid();
   makeGrid();
+}
+
+
+
+
+window.onload = () => {
+  makeGrid(16);
   paint();
   changeGrid();
 };

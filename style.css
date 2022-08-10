@@ -1,86 +1,90 @@
 :root {
-  --grid-row: 1;
-  --grid-col: 1;
-  --primary-color: #efefef;
-  --secondary-color: #04aa6d;
+	--grid-row: 1;
+	--grid-col: 1;
+	--primary-color: #efefef;
+	--secondary-color: #04aa6d;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 2rem;
-  background-color: var(--primary-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	gap: 2rem;
+	background-color: var(--primary-color);
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
-  flex: 1;
-  gap: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: start;
+	flex: 1;
+	gap: 2rem;
 }
 
 .settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: start;
+	width: 100%;
 }
 
 .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+	-webkit-appearance: none;
+	width: 100%;
+	height: 10px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
 }
 
 .slider__label {
-  font-size: clamp(1rem, 0.9429rem + 0.2857vw, 1.2rem);
+	font-size: clamp(1rem, 0.9429rem + 0.2857vw, 1.2rem);
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
-  height: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
-  border-radius: 50%;
-  background: var(--secondary-color);
-  cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	width: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
+	height: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
+	border-radius: 50%;
+	background: var(--secondary-color);
+	cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
-  height: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
-  border-radius: 50%;
-  background: var(--secondary-color);
-  cursor: pointer;
+	width: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
+	height: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
+	border-radius: 50%;
+	background: var(--secondary-color);
+	cursor: pointer;
 }
 
 .title {
-  font-size: clamp(1.7rem, 1.0429rem + 3.2857vw, 4rem);
-  color: var(--secondary-color);
+	font-size: clamp(1.7rem, 1.0429rem + 3.2857vw, 4rem);
+	color: var(--secondary-color);
 }
 
 .container {
-  display: grid;
-  width: 250px;
-  height: 250px;
-  grid-template-columns: repeat(var(--grid-col), 1fr);
-  grid-template-rows: repeat(var(--grid-row), 1fr);
-  background-color: white;
+	border-right: 1px solid black; /*Fix double borders */
+	border-bottom: 1px solid black; /*Fix double borders */
+	display: grid;
+	width: 250px;
+	height: 250px;
+	grid-template-columns: repeat(var(--grid-col), 1fr);
+	grid-template-rows: repeat(var(--grid-row), 1fr);
+	background-color: var(--primary-color);
 }
 
 .grid-item {
-  border: 1px solid black;
+	border-width: 1px 0 0 1px; /*Fix double borders */
+	border-style: solid;
+	border-color: black;
 }
 
 /*
@@ -101,32 +105,32 @@ medium desktop will be greater than 88em(1400px)
 
 /* for-tablet-portrait-up */
 @media (min-width: 43em) {
-  .container {
-    width: 300px;
-    height: 300px;
-  }
+	.container {
+		width: 300px;
+		height: 300px;
+	}
 }
 
 /* for-smaller-screens-up */
 @media (min-width: 62em) {
-  .container {
-    width: 350px;
-    height: 350px;
-  }
+	.container {
+		width: 350px;
+		height: 350px;
+	}
 }
 
 /* for-desktop-up */
 @media (min-width: 75em) {
-  .container {
-    width: 500px;
-    height: 500px;
-  }
+	.container {
+		width: 500px;
+		height: 500px;
+	}
 }
 
 /* for-medium-desktop-up */
 @media (min-width: 88em) {
-  .container {
-    width: 600px;
-    height: 600px;
-  }
+	.container {
+		width: 600px;
+		height: 600px;
+	}
 }
