@@ -12,6 +12,7 @@ body {
 	align-items: center;
 	gap: 2rem;
 	background-color: var(--primary-color);
+	font-family: 'Roboto', sans-serif;
 }
 
 main {
@@ -26,23 +27,31 @@ main {
 .settings {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: start;
+	justify-content: start;
+	align-items: center;
 	width: 100%;
-	gap: 2rem;
+	gap: 1rem;
 }
 
 .slider__container {
-	width: 100%;
+	width: 80%;
 }
 
 button {
 	color: black;
 	padding: 10px 20px;
-	border: 1px solid #333;
+	border: 1px solid var(--secondary-color);
 	border-radius: 5px;
 	width: 60%;
 	cursor: pointer;
+}
+button:hover {
+	transform: scale(1.03);
+}
+
+.active {
+	background-color: var(--secondary-color);
+	color: white;
 }
 
 .slider {
@@ -80,7 +89,8 @@ button {
 }
 
 .title {
-	font-size: clamp(1.7rem, 1.0429rem + 3.2857vw, 4rem);
+	margin-top: 1rem;
+	font-size: clamp(3rem, 2.5714rem + 2.1429vw, 4.5rem);
 	color: var(--secondary-color);
 }
 
@@ -89,12 +99,14 @@ button {
 	border-style: solid; /*Fix double borders on the grid*/
 	border-color: black; /*Fix double borders on the grid*/
 	display: grid;
-	width: 250px;
-	height: 250px;
+	width: 300px;
+	height: 300px;
 	grid-template-columns: repeat(var(--grid-col), 1fr);
 	grid-template-rows: repeat(var(--grid-row), 1fr);
 	background-color: var(--primary-color);
 	cursor: crosshair;
+	-webkit-box-shadow: 0px 0px 26px -11px #000000;
+	box-shadow: 0px 0px 26px -11px #000000;
 }
 
 .grid-item {
@@ -122,8 +134,8 @@ medium desktop will be greater than 88em(1400px)
 /* for-tablet-portrait-up */
 @media (min-width: 43em) {
 	.container {
-		width: 300px;
-		height: 300px;
+		width: 350px;
+		height: 350px;
 	}
 }
 

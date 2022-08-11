@@ -3,6 +3,7 @@ const root = document.documentElement;
 const slider = document.getElementById("myRange");
 const gridSize = document.getElementById("slider__value");
 const resetBtn = document.querySelector(".reset-btn");
+const btns = document.querySelectorAll("button");
 let cells;
 let pickedBgColor = "rgb(0,0,0)";
 
@@ -78,7 +79,9 @@ function changeGrid() {
 
 
 function reloadGrid() {
+  slider.value = 16;
   clearGrid();
+  changeGrid();
   makeGrid();
 }
 
@@ -87,12 +90,30 @@ function clearGrid() {
 }
 
 
+function randomColor() {
+  const rbgValues = [];
+  for (let index = 0; index < 3; index++) {
+    const value = Math.floor(Math.random() * 256) + 1;
+    rbgValues.push(value);
+  }
+  return `rgb(${rbgValues[0]},${rbgValues[1]},${rbgValues[2]}`;
+}
 
+
+// Event listeners
+resetBtn.onclick = reloadGrid;
+btns.forEach((change, _, btn) => {
+  change.onclick = () => {
+    btn.forEach(bt => {
+      console.log(bt.classList.contains("rainbow-btn") && randomColor());
+      // bt.classList.contains("rainbow") && randomColor();
+      bt.classList.toggle("active", bt === change); //if bt === change > True add the class, else remove it
+    });
+  }
+});
 
 window.onload = () => {
   makeGrid(16);
   listenForPaint();
   changeGrid();
-  // Event listeners
-  resetBtn.onclick = reloadGrid;
 };
