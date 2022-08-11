@@ -29,6 +29,20 @@ main {
 	justify-content: flex-start;
 	align-items: start;
 	width: 100%;
+	gap: 2rem;
+}
+
+.slider__container {
+	width: 100%;
+}
+
+button {
+	color: black;
+	padding: 10px 20px;
+	border: 1px solid #333;
+	border-radius: 5px;
+	width: 60%;
+	cursor: pointer;
 }
 
 .slider {
@@ -71,18 +85,20 @@ main {
 }
 
 .container {
-	border-right: 1px solid black; /*Fix double borders */
-	border-bottom: 1px solid black; /*Fix double borders */
+	border-width: 0 1px 1px 0; /*Fix double borders on the grid*/
+	border-style: solid; /*Fix double borders on the grid*/
+	border-color: black; /*Fix double borders on the grid*/
 	display: grid;
 	width: 250px;
 	height: 250px;
 	grid-template-columns: repeat(var(--grid-col), 1fr);
 	grid-template-rows: repeat(var(--grid-row), 1fr);
 	background-color: var(--primary-color);
+	cursor: crosshair;
 }
 
 .grid-item {
-	border-width: 1px 0 0 1px; /*Fix double borders */
+	border-width: 1px 0 0 1px; /*Fix double borders on the grid*/
 	border-style: solid;
 	border-color: black;
 }

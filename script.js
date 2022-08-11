@@ -1,8 +1,9 @@
 const container = document.querySelector(".container");
-// const gridItems = document.querySelectorAll(".grid-item");
 const root = document.documentElement;
 const slider = document.getElementById("myRange");
 const gridSize = document.getElementById("slider__value");
+const resetBtn = document.querySelector(".reset-btn");
+let cells;
 let pickedBgColor = "rgb(0,0,0)";
 
 /* 
@@ -20,12 +21,14 @@ function makeGrid(size = 16) {
     cell.classList.add("grid-item");
     container.append(cell);
   }
+  cells = document.querySelectorAll(".grid-item");
+  listenForPaint();
 }
 
 
 
 
-function paint() {
+function listenForPaint() {
   //Listens for two events and calls appropriate function
   ["mousedown", "mouseup"].forEach((evt) => {
     //Assign a function to callback, depending on the event.
@@ -42,7 +45,7 @@ function paint() {
           `Error.The callback function for event listeners is not working.`
         );
     }
-    container.addEventListener(evt, callback);
+    cells.forEach(cell => cell.addEventListener(evt, callback));
   });
 }
 
@@ -51,7 +54,7 @@ function paint() {
 will trigger another event listener - mousemove.*/
 function mouseDownListener(e) {
   changeColor(e);
-  container.addEventListener("mousemove", changeColor);
+  cells.forEach(cell => cell.addEventListener("mousemove", changeColor));
 }
 
 // Change the background color
@@ -61,7 +64,7 @@ function changeColor(e) {
 
 // Remove mousemove listener
 function mouseUpListener() {
-  container.removeEventListener("mousemove", changeColor);
+  cells.forEach(cell => cell.removeEventListener("mousemove", changeColor));
 }
 
 function changeGrid() {
@@ -73,13 +76,14 @@ function changeGrid() {
   };
 }
 
-function clearGrid() {
-  container.innerHTML = '';
-}
 
 function reloadGrid() {
   clearGrid();
   makeGrid();
+}
+
+function clearGrid() {
+  container.innerHTML = '';
 }
 
 
@@ -87,6 +91,8 @@ function reloadGrid() {
 
 window.onload = () => {
   makeGrid(16);
-  paint();
+  listenForPaint();
   changeGrid();
+  // Event listeners
+  resetBtn.onclick = reloadGrid;
 };

@@ -16,18 +16,21 @@
         <main class="main">
             <div class="container"></div>
             <div class="settings">
-                <input
-                    type="range"
-                    min="2"
-                    max="64"
-                    value="16"
-                    class="slider"
-                    id="myRange"
-                >
-                <p class="slider__label">
-                    Grid:
-                    <span id="slider__value"></span>
-                </p>
+                <div class="slider__container">
+                    <input
+                        type="range"
+                        min="2"
+                        max="64"
+                        value="16"
+                        class="slider"
+                        id="myRange"
+                    >
+                    <p class="slider__label">
+                        Grid:
+                        <span id="slider__value"></span>
+                    </p>
+                </div>
+                <button type="reset" class="reset-btn">Reset</button>
             </div>
         </main>
         <footer>
