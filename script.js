@@ -26,9 +26,6 @@ function makeGrid(size = 16) {
   listenForPaint();
 }
 
-
-
-
 function listenForPaint() {
   //Listens for two events and calls appropriate function
   ["mousedown", "mouseup"].forEach((evt) => {
@@ -46,16 +43,15 @@ function listenForPaint() {
           `Error.The callback function for event listeners is not working.`
         );
     }
-    cells.forEach(cell => cell.addEventListener(evt, callback));
+    cells.forEach((cell) => cell.addEventListener(evt, callback));
   });
 }
-
 
 /*Once the mouse down event listener is triggered, this function
 will trigger another event listener - mousemove.*/
 function mouseDownListener(e) {
   changeColor(e);
-  cells.forEach(cell => cell.addEventListener("mousemove", changeColor));
+  cells.forEach((cell) => cell.addEventListener("mousemove", changeColor));
 }
 
 // Change the background color
@@ -65,18 +61,17 @@ function changeColor(e) {
 
 // Remove mousemove listener
 function mouseUpListener() {
-  cells.forEach(cell => cell.removeEventListener("mousemove", changeColor));
+  cells.forEach((cell) => cell.removeEventListener("mousemove", changeColor));
 }
 
 function changeGrid() {
   gridSize.textContent = `${slider.value}x${slider.value}`;
   slider.oninput = (e) => {
     gridSize.textContent = `${e.target.value}x${e.target.value}`;
-    clearGrid()
+    clearGrid();
     makeGrid(e.target.value);
   };
 }
-
 
 function reloadGrid() {
   slider.value = 16;
@@ -86,9 +81,8 @@ function reloadGrid() {
 }
 
 function clearGrid() {
-  container.innerHTML = '';
+  container.innerHTML = "";
 }
-
 
 function randomColor() {
   const rbgValues = [];
@@ -99,17 +93,16 @@ function randomColor() {
   return `rgb(${rbgValues[0]},${rbgValues[1]},${rbgValues[2]}`;
 }
 
-
 // Event listeners
 resetBtn.onclick = reloadGrid;
 btns.forEach((change, _, btn) => {
   change.onclick = () => {
-    btn.forEach(bt => {
+    btn.forEach((bt) => {
       console.log(bt.classList.contains("rainbow-btn") && randomColor());
-      // bt.classList.contains("rainbow") && randomColor();
+      bt.classList.contains("reset-btn") && reloadGrid();
       bt.classList.toggle("active", bt === change); //if bt === change > True add the class, else remove it
     });
-  }
+  };
 });
 
 window.onload = () => {
